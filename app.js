@@ -15,6 +15,7 @@ do {
         6-Salir de la tienda
         `);
 
+  //console.log(eleccion);
   switch (eleccion) {
     case '1':
       totalCarrito += 100000;
@@ -35,6 +36,9 @@ do {
       break;
     case '6':
       condition = !confirm('Estas seguro de querer salir?');
+      break;
+    case null: // cancelar del prompt sin valor
+      condition = false;
       break;
     default:
       alert('Esa opción no está disponible');
