@@ -11,7 +11,8 @@ do {
         2-Huevo de plata
         3-Huevo de bronce
         4-Ver total
-        5-Salir de la tienda
+        5-Ver total con IVA
+        6-Salir de la tienda
         `);
 
   switch (eleccion) {
@@ -28,6 +29,11 @@ do {
       alert(`El total hasta el momento es $${totalCarrito}`);
       break;
     case '5':
+      alert(
+        `El total hasta el momento con IVA es $${calcularIva(totalCarrito)}`
+      );
+      break;
+    case '6':
       condition = !confirm('Estas seguro de querer salir?');
       break;
     default:
