@@ -11,6 +11,13 @@ const calcularTotal = (productos) => {
   return total;
 };
 
+const formatCurrency = (precio) => {
+  return new Intl.NumberFormat('es-AR', {
+    style: 'currency',
+    currency: 'ARS',
+  }).format(precio);
+};
+
 let productos = [];
 
 do {
@@ -20,14 +27,8 @@ do {
         2-Huevo de plata
         3-Huevo de bronce
         4-Salir de la tienda
-        Total Carrito: ${new Intl.NumberFormat('es-AR', {
-          style: 'currency',
-          currency: 'ARS',
-        }).format(calcularTotal(productos))}
-        Total IVA: ${new Intl.NumberFormat('es-AR', {
-          style: 'currency',
-          currency: 'ARS',
-        }).format(calcularIva(calcularTotal(productos)))}
+        Total Carrito: ${formatCurrency(calcularTotal(productos))}
+        Total IVA: ${formatCurrency(calcularIva(calcularTotal(productos)))}
         Total Productos: ${productos.length}
         `);
 
