@@ -20,8 +20,14 @@ do {
         2-Huevo de plata
         3-Huevo de bronce
         4-Salir de la tienda
-        Total Carrito: $${calcularTotal(productos)}
-        Total IVA: $${calcularIva(calcularTotal(productos))}
+        Total Carrito: ${new Intl.NumberFormat('es-AR', {
+          style: 'currency',
+          currency: 'ARS',
+        }).format(calcularTotal(productos))}
+        Total IVA: ${new Intl.NumberFormat('es-AR', {
+          style: 'currency',
+          currency: 'ARS',
+        }).format(calcularIva(calcularTotal(productos)))}
         Total Productos: ${productos.length}
         `);
 
