@@ -18,6 +18,26 @@ const formatCurrency = (precio) => {
   }).format(precio);
 };
 
+const guardarCarrito = (carrito) => {
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+};
+
+const limpiarCarrito = () => {
+  localStorage.removeItem('carrito');
+};
+
+const guardarFavoritos = (favoritos) => {
+  localStorage.setItem('favoritos', JSON.stringify(favoritos));
+};
+
+const limpiarFavoritos = () => {
+  localStorage.removeItem('favoritos');
+};
+
+const getPrecioHuevo = (huevo) => {
+  return formatCurrency(huevo.precio);
+};
+
 class HuevoFaberge {
   constructor(id, nombre, precio, imagen, composicion, dimensiones, peso) {
     this.id = id;
@@ -86,28 +106,44 @@ productos.push(huevo1, huevo2, huevo3, huevo4);
 do {
   let eleccion =
     prompt(`Bienvenido/a a nuestra tienda de Huevos Faberge, selecciona un producto:
-        1-Huevo de oro
-        2-Huevo de plata
-        3-Huevo de bronce
-        4-Salir de la tienda
-        Total Carrito: ${formatCurrency(calcularTotal(productos))}
-        Total IVA: ${formatCurrency(calcularIva(calcularTotal(productos)))}
-        Total Productos: ${productos.length}
+        1-Huevo de oro - ${getPrecioHuevo(huevo1)}
+        2-Huevo de plata - ${getPrecioHuevo(huevo2)}
+        3-Huevo de bronce - ${getPrecioHuevo(huevo3)}
+        4-Huevo de cobre - ${getPrecioHuevo(huevo4)}
+        5-Salir de la tienda
+        Total Carrito: ${formatCurrency(calcularTotal(carrito))}
+        Total IVA: ${formatCurrency(calcularIva(calcularTotal(carrito)))}
+        Total Productos: ${carrito.length}
         `);
 
   //console.log(eleccion);
   switch (eleccion) {
     case '1':
-      productos.push({ id: 1, nombre: 'Huevo de oro', precio: 100000 });
+      carrito.push(huevo1);
+      guardarCarrito(carrito);
       break;
     case '2':
-      productos.push({ id: 2, nombre: 'Huevo de plata', precio: 75000 });
+      carrito.push(huevo2);
+      guardarCarrito(carrito);
       break;
     case '3':
-      productos.push({ id: 3, nombre: 'Huevo de bronce', precio: 50000 });
+      carrito.push(huevo3);
+      guardarCarrito(carrito);
       break;
     case '4':
-      condition = !confirm('Estas seguro de querer salir?');
+      carrito.push(huevo4);
+      guardarCarrito(carrito);
+      break;
+    case '5':
+      let cantidad =
+        carrito.length > 0
+          ? ` Tiene elementos en el carrito (${carrito.length})`
+          : '';
+      condition = !confirm(`Estas seguro de querer salir?${cantidad}`);
+      console.log(condition);
+      if (!condition) {
+        limpiarCarrito();
+      }
       break;
     case null: // cancelar del prompt sin valor
       condition = false;
