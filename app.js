@@ -18,7 +18,70 @@ const formatCurrency = (precio) => {
   }).format(precio);
 };
 
+class HuevoFaberge {
+  constructor(id, nombre, precio, imagen, composicion, dimensiones, peso) {
+    this.id = id;
+    this.nombre = nombre;
+    this.precio = precio;
+    this.imagen = imagen;
+    this.composicion = composicion;
+    this.dimensiones = dimensiones;
+    this.peso = peso;
+  }
+}
+
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+
 let productos = [];
+let huevo1 = new HuevoFaberge(
+  1,
+  'Huevo de oro',
+  100000,
+  'img/huevo-oro.jpg',
+  [
+    ['Oro 24k', 75],
+    ['Plata 925', 25],
+  ],
+  '10x10x10',
+  '1kg'
+);
+let huevo2 = new HuevoFaberge(
+  2,
+  'Huevo de plata',
+  75000,
+  'img/huevo-plata.jpg',
+  [['Plata 925', 100]],
+  '10x10x10',
+  '1kg'
+);
+let huevo3 = new HuevoFaberge(
+  3,
+  'Huevo de bronce',
+  50000,
+  [
+    ['Bronce', 90],
+    ['Plata 925', 10],
+  ],
+  'img/huevo-bronce.jpg',
+  'Bronce',
+  '10x10x10',
+  '1kg'
+);
+let huevo4 = new HuevoFaberge(
+  4,
+  'Huevo de cobre',
+  25000,
+  [
+    ['Cobre', 80],
+    ['Plata 925', 20],
+  ],
+  'img/huevo-cobre.jpg',
+  'Cobre',
+  '10x10x10',
+  '1kg'
+);
+productos.push(huevo1, huevo2, huevo3, huevo4);
 
 do {
   let eleccion =
