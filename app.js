@@ -43,23 +43,11 @@ const getHuevosDescuento = (huevos, descuento) => {
 };
 
 class HuevoFaberge {
-  constructor(
-    id,
-    nombre,
-    precio,
-    imagen,
-    composicion,
-    dimensiones,
-    peso,
-    descuento
-  ) {
+  constructor(id, nombre, precio, imagen, descuento) {
     this.id = id;
     this.nombre = nombre;
     this.precio = precio;
     this.imagen = imagen;
-    this.composicion = composicion;
-    this.dimensiones = dimensiones;
-    this.peso = peso;
     this.descuento = descuento;
   }
 }
@@ -67,12 +55,54 @@ class HuevoFaberge {
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
 
+const refreshIndicadores = () => {
+  let carritoCount = document.querySelector('#carrito-count');
+  let favoritosCount = document.querySelector('#favoritos-count');
+
+  carritoCount.innerHTML = carrito.length;
+  favoritosCount.innerHTML = favoritos.length;
+};
+
+refreshIndicadores();
+
+const huevos = [];
+
+const addToFavorites = (id) => {
+  let prod = huevos.find((prod) => prod.id == id);
+  if (favoritos.some((item) => item.id == id)) {
+    alert('El producto ya está en favoritos');
+  } else {
+    favoritos.push(prod);
+    guardarFavoritos(favoritos);
+    alert('Producto agregado a favoritos');
+  }
+  refreshIndicadores();
+};
+
+const addToCart = (id) => {
+  let prod = huevos.find((prod) => prod.id == id);
+  if (carrito.some((item) => item.id == id)) {
+    alert('El producto ya está en el carrito');
+  } else {
+    carrito.push(prod);
+    guardarCarrito(carrito);
+    alert('Producto agregado al carrito');
+  }
+  refreshIndicadores();
+};
+
 const loadDom = (prods) => {
   let contenedor = document.querySelector('#product-list');
   prods.forEach((prod) => {
-    //crean la lógica para cargar los prods en el DOM
-    console.log(prod);
+    let huevo = new HuevoFaberge(
+      prod.id,
+      prod.nombre,
+      prod.precio,
+      prod.img,
+      prod.descuento
+    );
 
+    huevos.push(huevo);
     let divProd = document.createElement('div');
     divProd.classList.add('col-lg-3', 'col-md-4', 'col-sm-6', 'pb-1');
     divProd.innerHTML = `

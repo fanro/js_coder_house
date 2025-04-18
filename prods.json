@@ -1,7 +1,7 @@
 [
   { "id": 1, "nombre": "Huevo de oro", "img": "img/product-1.jpg", "precio": 100000, "descuento": 0 },
   { "id": 2, "nombre": "Huevo de oro", "img": "img/product-2.jpg", "precio": 150000, "descuento": 0 },
-  { "id": 3, "nombre": "Huevo de plata", "img": "img/product-3.jpg", "precio": 76000, "descuento": 0.5 },
+  { "id": 3, "nombre": "Huevo de plata", "img": "img/product-3.jpg", "precio": 76000, "descuento": 0.2 },
   { "id": 4, "nombre": "Huevo de plata", "img": "img/product-4.jpg", "precio": 86000, "descuento": 0 },
   { "id": 5, "nombre": "Huevo de bronce", "img": "img/product-5.jpg", "precio": 50000, "descuento": 0.1 },
   { "id": 6, "nombre": "Huevo de bronce", "img": "img/product-6.jpg", "precio": 60000, "descuento": 0 },
