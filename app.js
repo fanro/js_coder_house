@@ -198,6 +198,12 @@ const filtrarHuevosTipo = (tipo) => {
   loadDomHuevos(huevosFiltrados);
 };
 
+const filtrarHuevosDescuento = (descuento) => {
+  let huevosFiltrados = huevos.filter((huevo) => huevo.descuento == descuento);
+  cleanDomHuevos();
+  loadDomHuevos(huevosFiltrados);
+};
+
 let filtroHuevosOro = document.querySelector('#huevos_oro');
 filtroHuevosOro.addEventListener('click', () => {
   filtrarHuevosTipo('oro');
@@ -222,4 +228,20 @@ let filtroHuevosTodos = document.querySelector('#huevos_todo');
 filtroHuevosTodos.addEventListener('click', () => {
   cleanDomHuevos();
   loadDomHuevos(huevos);
+});
+
+let borrarFiltros = document.querySelector('#borrar-filtros');
+borrarFiltros.addEventListener('click', () => {
+  cleanDomHuevos();
+  loadDomHuevos(huevos);
+});
+
+let filtroHuevosDescuento10 = document.querySelector('#oferta_10');
+filtroHuevosDescuento10.addEventListener('click', () => {
+  filtrarHuevosDescuento(0.1);
+});
+
+let filtroHuevosDescuento20 = document.querySelector('#oferta_20');
+filtroHuevosDescuento20.addEventListener('click', () => {
+  filtrarHuevosDescuento(0.2);
 });
