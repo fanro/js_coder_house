@@ -29,14 +29,28 @@ const eliminarDelCarrito = (id) => {
   loadDomCarrito(carrito);
 };
 
+const modificarCantidad = (id, cantidad) => {
+  if (cantidad >= 1) {
+    let prod = carrito.find((prod) => prod.id === id);
+    if (prod) {
+      prod.cantidad = cantidad;
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      refreshIndicadores();
+      cleanDomCarrito();
+      loadDomCarrito(carrito);
+    }
+  }
+};
+
 refreshIndicadores();
 
 const loadDomCarrito = (prods) => {
-  console.log(prods);
   let contenedor = document.querySelector('#cart-items');
   prods.forEach((prod, inx) => {
-    console.log(inx);
     let tr = document.createElement('tr');
+    let precio = prod.descuento
+      ? prod.precio * (1 - prod.descuento)
+      : prod.precio;
 
     tr.innerHTML = `
                     <td class="align-middle"><img src="${
@@ -52,21 +66,27 @@ const loadDomCarrito = (prods) => {
                     <td class="align-middle">
                         <div class="input-group quantity mx-auto" style="width: 100px;">
                             <div class="input-group-btn">
-                                <button class="btn btn-sm btn-primary btn-minus">
+                                <button class="btn btn-sm btn-primary btn-minus" onclick="modificarCantidad(${
+                                  prod.id
+                                }, ${prod.cantidad - 1})">
                                     <i class="fa fa-minus"></i>
                                 </button>
                             </div>
                             <input type="text"
                                 class="form-control form-control-sm bg-secondary border-0 text-center"
-                                value="1">
+                                value="${prod.cantidad}">
                             <div class="input-group-btn">
-                                <button class="btn btn-sm btn-primary btn-plus">
+                                <button class="btn btn-sm btn-primary btn-plus" onclick="modificarCantidad(${
+                                  prod.id
+                                }, ${prod.cantidad + 1})">
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
                         </div>
                     </td>
-                    <td class="align-middle">$150</td>
+                    <td class="align-middle">${formatCurrency(
+                      prod.cantidad * precio
+                    )}</td>
                     <td class="align-middle"><button class="btn btn-sm btn-danger" onclick="eliminarDelCarrito(${
                       prod.id
                     })"><i

@@ -43,10 +43,11 @@ const getHuevosDescuento = (huevos, descuento) => {
 };
 
 class HuevoFaberge {
-  constructor(id, nombre, precio, img, tipo, descuento) {
+  constructor(id, nombre, precio, img, cantidad, tipo, descuento) {
     this.id = id;
     this.nombre = nombre;
     this.precio = precio;
+    this.cantidad = cantidad;
     this.img = img;
     this.tipo = tipo;
     this.descuento = descuento;
@@ -180,6 +181,7 @@ const getData = async () => {
       huevo.nombre,
       huevo.precio,
       huevo.img,
+      huevo.cantidad,
       huevo.tipo,
       huevo.descuento
     );
