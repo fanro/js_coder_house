@@ -69,25 +69,55 @@ const huevos = [];
 
 const addToFavorites = (id) => {
   let prod = huevos.find((prod) => prod.id == id);
+  let mensaje = '';
   if (favoritos.some((item) => item.id == id)) {
-    alert('El producto ya está en favoritos');
+    mensaje = 'El producto ya está en favoritos';
   } else {
+    mensaje = 'Producto agregado a favoritos';
     favoritos.push(prod);
     guardarFavoritos(favoritos);
-    alert('Producto agregado a favoritos');
   }
+  Toastify({
+    text: mensaje,
+    duration: 3000,
+    destination: 'https://github.com/apvarun/toastify-js',
+    newWindow: true,
+    close: true,
+    gravity: 'top', // `top` or `bottom`
+    position: 'right', // `left`, `center` or `right`
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    style: {
+      background: 'linear-gradient(to right,rgb(221, 59, 10), #96c93d)',
+    },
+    onClick: function () {}, // Callback after click
+  }).showToast();
   refreshIndicadores();
 };
 
 const addToCart = (id) => {
+  let mensaje = '';
   let prod = huevos.find((prod) => prod.id == id);
   if (carrito.some((item) => item.id == id)) {
-    alert('El producto ya está en el carrito');
+    mensaje = 'El producto ya está en el carrito';
   } else {
     carrito.push(prod);
     guardarCarrito(carrito);
-    alert('Producto agregado al carrito');
+    mensaje = 'Producto agregado al carrito';
   }
+  Toastify({
+    text: mensaje,
+    duration: 3000,
+    destination: 'https://github.com/apvarun/toastify-js',
+    newWindow: true,
+    close: true,
+    gravity: 'top', // `top` or `bottom`
+    position: 'right', // `left`, `center` or `right`
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    style: {
+      background: 'linear-gradient(to right,rgb(155, 201, 29), #96c93d)',
+    },
+    onClick: function () {}, // Callback after click
+  }).showToast();
   refreshIndicadores();
 };
 
