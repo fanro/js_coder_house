@@ -43,11 +43,12 @@ const getHuevosDescuento = (huevos, descuento) => {
 };
 
 class HuevoFaberge {
-  constructor(id, nombre, precio, imagen, descuento) {
+  constructor(id, nombre, precio, img, tipo, descuento) {
     this.id = id;
     this.nombre = nombre;
     this.precio = precio;
-    this.imagen = imagen;
+    this.img = img;
+    this.tipo = tipo;
     this.descuento = descuento;
   }
 }
@@ -121,18 +122,14 @@ const addToCart = (id) => {
   refreshIndicadores();
 };
 
-const loadDom = (prods) => {
+const cleanDomHuevos = () => {
+  let contenedor = document.querySelector('#product-list');
+  contenedor.innerHTML = '';
+};
+
+const loadDomHuevos = (prods) => {
   let contenedor = document.querySelector('#product-list');
   prods.forEach((prod) => {
-    let huevo = new HuevoFaberge(
-      prod.id,
-      prod.nombre,
-      prod.precio,
-      prod.img,
-      prod.descuento
-    );
-
-    huevos.push(huevo);
     let divProd = document.createElement('div');
     divProd.classList.add('col-lg-3', 'col-md-4', 'col-sm-6', 'pb-1');
     divProd.innerHTML = `
@@ -177,7 +174,52 @@ const getData = async () => {
       return json;
     });
 
-  loadDom(data);
+  data.forEach((huevo) => {
+    let huevoNuevo = new HuevoFaberge(
+      huevo.id,
+      huevo.nombre,
+      huevo.precio,
+      huevo.img,
+      huevo.tipo,
+      huevo.descuento
+    );
+
+    huevos.push(huevoNuevo);
+  });
+
+  loadDomHuevos(huevos);
 };
 
 getData();
+
+const filtrarHuevosTipo = (tipo) => {
+  let huevosFiltrados = huevos.filter((huevo) => huevo.tipo == tipo);
+  cleanDomHuevos();
+  loadDomHuevos(huevosFiltrados);
+};
+
+let filtroHuevosOro = document.querySelector('#huevos_oro');
+filtroHuevosOro.addEventListener('click', () => {
+  filtrarHuevosTipo('oro');
+});
+
+let filtroHuevosPlata = document.querySelector('#huevos_plata');
+filtroHuevosPlata.addEventListener('click', () => {
+  filtrarHuevosTipo('plata');
+});
+
+let filtroHuevosBronce = document.querySelector('#huevos_bronce');
+filtroHuevosBronce.addEventListener('click', () => {
+  filtrarHuevosTipo('bronce');
+});
+
+let filtroHuevosCombinados = document.querySelector('#huevos_combinado');
+filtroHuevosCombinados.addEventListener('click', () => {
+  filtrarHuevosTipo('combinado');
+});
+
+let filtroHuevosTodos = document.querySelector('#huevos_todo');
+filtroHuevosTodos.addEventListener('click', () => {
+  cleanDomHuevos();
+  loadDomHuevos(huevos);
+});

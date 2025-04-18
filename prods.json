@@ -1,11 +1,11 @@
 [
-  { "id": 1, "nombre": "Huevo de oro", "img": "img/product-1.jpg", "precio": 100000, "descuento": 0 },
-  { "id": 2, "nombre": "Huevo de oro", "img": "img/product-2.jpg", "precio": 150000, "descuento": 0 },
-  { "id": 3, "nombre": "Huevo de plata", "img": "img/product-3.jpg", "precio": 76000, "descuento": 0.2 },
-  { "id": 4, "nombre": "Huevo de plata", "img": "img/product-4.jpg", "precio": 86000, "descuento": 0 },
-  { "id": 5, "nombre": "Huevo de bronce", "img": "img/product-5.jpg", "precio": 50000, "descuento": 0.1 },
-  { "id": 6, "nombre": "Huevo de bronce", "img": "img/product-6.jpg", "precio": 60000, "descuento": 0 },
-  { "id": 7, "nombre": "Huevo combinado", "img": "img/product-7.jpg", "precio": 60000, "descuento": 0.2 },
-  { "id": 8, "nombre": "Huevo combinado", "img": "img/product-8.jpg", "precio": 75000, "descuento": 0 }
+  { "id": 1, "nombre": "Huevo de oro", "img": "img/product-1.jpg", "tipo":"oro", "precio": 100000, "descuento": 0 },
+  { "id": 2, "nombre": "Huevo de oro", "img": "img/product-2.jpg", "tipo":"oro", "precio": 150000, "descuento": 0 },
+  { "id": 3, "nombre": "Huevo de plata", "img": "img/product-3.jpg", "tipo":"plata", "precio": 76000, "descuento": 0.2 },
+  { "id": 4, "nombre": "Huevo de plata", "img": "img/product-4.jpg", "tipo":"plata", "precio": 86000, "descuento": 0 },
+  { "id": 5, "nombre": "Huevo de bronce", "img": "img/product-5.jpg", "tipo":"bronce", "precio": 50000, "descuento": 0.1 },
+  { "id": 6, "nombre": "Huevo de bronce", "img": "img/product-6.jpg", "tipo":"bronce", "precio": 60000, "descuento": 0 },
+  { "id": 7, "nombre": "Huevo combinado", "img": "img/product-7.jpg", "tipo":"combinado", "precio": 60000, "descuento": 0.2 },
+  { "id": 8, "nombre": "Huevo combinado", "img": "img/product-8.jpg", "tipo":"combinado", "precio": 75000, "descuento": 0 }
 
 ]
