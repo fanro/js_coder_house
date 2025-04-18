@@ -77,28 +77,33 @@ const loadDom = (prods) => {
     divProd.classList.add('col-lg-3', 'col-md-4', 'col-sm-6', 'pb-1');
     divProd.innerHTML = `
       <div class="product-item bg-light mb-4">
-          <div class="product-img position-relative overflow-hidden">
-              <img class="img-fluid w-100" src="${prod.img}" alt="">
-              <div class="product-action">
-                  <a class="btn btn-outline-dark btn-square"><i class="fa fa-shopping-cart"></i></a>
-                  <a class="btn btn-outline-dark btn-square"><i class="far fa-heart"></i></a>
-              </div>
+        <div class="product-img position-relative overflow-hidden">
+          <img class="img-fluid w-100" src="${prod.img}" alt="">
+          <div class="product-action">
+            <a class="btn btn-outline-dark btn-square" onclick="addToCart(${
+              prod.id
+            })"><i class="fa fa-shopping-cart"></i></a>
+            <a class="btn btn-outline-dark btn-square" onclick="addToFavorites(${
+              prod.id
+            })"><i class="far fa-heart"></i></a>
           </div>
-          <div class="text-center py-4">
-              <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-              <div class="d-flex align-items-center justify-content-center mt-2">
-                  <h5>$123.00</h5>
-                  <h6 class="text-muted ml-2"><del>$123.00</del></h6>
-              </div>
-              <div class="d-flex align-items-center justify-content-center mb-1">
-                  <small class="fa fa-star text-primary mr-1"></small>
-                  <small class="fa fa-star text-primary mr-1"></small>
-                  <small class="fa fa-star text-primary mr-1"></small>
-                  <small class="fa fa-star text-primary mr-1"></small>
-                  <small class="fa fa-star text-primary mr-1"></small>
-                  <small>(99)</small>
-              </div>
+        </div>
+        <div class="text-center py-4">
+          <a class="h6 text-decoration-none text-truncate" href="">${
+            prod.nombre
+          }</a>
+          <div class="d-flex align-items-center justify-content-center mt-2">  
+            ${
+              prod.descuento
+                ? ` <h5>${formatCurrency(
+                    (1 - prod.descuento) * prod.precio
+                  )}</h5><h6 class="text-muted ml-2"><del>${formatCurrency(
+                    prod.precio
+                  )}</del></h6>`
+                : `<h5>${formatCurrency(prod.precio)}</h5>`
+            }
           </div>
+        </div>
       </div>`;
 
     contenedor.appendChild(divProd);
