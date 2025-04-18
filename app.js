@@ -196,12 +196,14 @@ const filtrarHuevosTipo = (tipo) => {
   let huevosFiltrados = huevos.filter((huevo) => huevo.tipo == tipo);
   cleanDomHuevos();
   loadDomHuevos(huevosFiltrados);
+  document.getElementById('productos').scrollIntoView();
 };
 
 const filtrarHuevosDescuento = (descuento) => {
   let huevosFiltrados = huevos.filter((huevo) => huevo.descuento == descuento);
   cleanDomHuevos();
   loadDomHuevos(huevosFiltrados);
+  document.getElementById('productos').scrollIntoView();
 };
 
 let filtroHuevosOro = document.querySelector('#huevos_oro');
