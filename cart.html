@@ -88,7 +88,7 @@
     <div class="container-fluid">
         <div class="row px-xl-5">
             <div class="col-lg-8 col-md-12 table-responsive mb-5">
-                <table class="table table-light table-borderless table-hover text-center mb-0">
+                <table class="table table-light table-borderless table-hover text-center mb-0" id="cart-table">
                     <thead class="thead-dark">
                         <tr>
                             <th>Producto</th>
@@ -98,33 +98,7 @@
                             <th>Eliminar</th>
                         </tr>
                     </thead>
-                    <tbody class="align-middle">
-                        <tr>
-                            <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> Product
-                                Name</td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text"
-                                        class="form-control form-control-sm bg-secondary border-0 text-center"
-                                        value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-danger"><i
-                                        class="fa fa-times"></i></button></td>
-                        </tr>
-
+                    <tbody class="align-middle" id="cart-items">
                     </tbody>
                 </table>
             </div>
@@ -211,6 +185,9 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <!-- App Javascript -->
+    <script src="cart.js"></script>
 </body>
 
 </html>
