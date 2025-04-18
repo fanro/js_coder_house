@@ -192,10 +192,20 @@ const getData = async () => {
 
 getData();
 
+let borrarFiltros = document.querySelector('#borrar-filtros');
+borrarFiltros.addEventListener('click', () => {
+  cleanDomHuevos();
+  loadDomHuevos(huevos);
+  borrarFiltros.classList.remove('mostrar_block');
+  borrarFiltros.classList.add('ocultar');
+});
+
 const filtrarHuevosTipo = (tipo) => {
   let huevosFiltrados = huevos.filter((huevo) => huevo.tipo == tipo);
   cleanDomHuevos();
   loadDomHuevos(huevosFiltrados);
+  borrarFiltros.classList.remove('ocultar');
+  borrarFiltros.classList.add('mostrar_block');
   document.getElementById('productos').scrollIntoView();
 };
 
@@ -203,6 +213,8 @@ const filtrarHuevosDescuento = (descuento) => {
   let huevosFiltrados = huevos.filter((huevo) => huevo.descuento == descuento);
   cleanDomHuevos();
   loadDomHuevos(huevosFiltrados);
+  borrarFiltros.classList.remove('ocultar');
+  borrarFiltros.classList.add('mostrar_block');
   document.getElementById('productos').scrollIntoView();
 };
 
@@ -224,18 +236,6 @@ filtroHuevosBronce.addEventListener('click', () => {
 let filtroHuevosCombinados = document.querySelector('#huevos_combinado');
 filtroHuevosCombinados.addEventListener('click', () => {
   filtrarHuevosTipo('combinado');
-});
-
-let filtroHuevosTodos = document.querySelector('#huevos_todo');
-filtroHuevosTodos.addEventListener('click', () => {
-  cleanDomHuevos();
-  loadDomHuevos(huevos);
-});
-
-let borrarFiltros = document.querySelector('#borrar-filtros');
-borrarFiltros.addEventListener('click', () => {
-  cleanDomHuevos();
-  loadDomHuevos(huevos);
 });
 
 let filtroHuevosDescuento10 = document.querySelector('#oferta_10');

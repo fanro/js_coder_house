@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
-#imagen-central {
-    text-align: center;
+.ocultar {
+    display: none;
+}
+
+.mostrar_block {
+    display: block;
 }
