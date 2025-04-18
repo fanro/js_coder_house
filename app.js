@@ -1,8 +1,3 @@
-let condition = true;
-const IVA = 1.21;
-
-const calcularIva = (precio) => precio * IVA;
-
 const calcularTotal = (productos) => {
   let total = 0;
   for (let i = 0; i < productos.length; i++) {

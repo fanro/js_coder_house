@@ -1,3 +1,7 @@
+const IVA = 0.21;
+
+const calcularIva = (precio) => precio * IVA;
+
 const formatCurrency = (precio) => {
   return new Intl.NumberFormat('es-AR', {
     style: 'currency',
@@ -48,6 +52,10 @@ let totalCarrito = 0;
 const refreshTotal = () => {
   let carritoCount = document.querySelector('#subtotal-carrito');
   carritoCount.innerHTML = formatCurrency(totalCarrito);
+  let iva = document.querySelector('#calculo-iva');
+  iva.innerHTML = formatCurrency(calcularIva(totalCarrito));
+  let total = document.querySelector('#total-carrito');
+  total.innerHTML = formatCurrency(totalCarrito + calcularIva(totalCarrito));
 };
 
 const loadDomCarrito = (prods) => {
