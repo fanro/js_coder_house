@@ -67,112 +67,52 @@ class HuevoFaberge {
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
 
-let productos = [];
+const loadDom = (prods) => {
+  let contenedor = document.querySelector('#product-list');
+  prods.forEach((prod) => {
+    //crean la lógica para cargar los prods en el DOM
+    console.log(prod);
 
-let huevo1 = new HuevoFaberge(
-  1,
-  'Huevo de oro',
-  100000,
-  'img/huevo-oro.jpg',
-  [
-    ['Oro 24k', 75],
-    ['Plata 925', 25],
-  ],
-  '10x10x10',
-  '1kg',
-  0
-);
+    let divProd = document.createElement('div');
+    divProd.classList.add('col-lg-3', 'col-md-4', 'col-sm-6', 'pb-1');
+    divProd.innerHTML = `
+      <div class="product-item bg-light mb-4">
+          <div class="product-img position-relative overflow-hidden">
+              <img class="img-fluid w-100" src="${prod.img}" alt="">
+              <div class="product-action">
+                  <a class="btn btn-outline-dark btn-square"><i class="fa fa-shopping-cart"></i></a>
+                  <a class="btn btn-outline-dark btn-square"><i class="far fa-heart"></i></a>
+              </div>
+          </div>
+          <div class="text-center py-4">
+              <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
+              <div class="d-flex align-items-center justify-content-center mt-2">
+                  <h5>$123.00</h5>
+                  <h6 class="text-muted ml-2"><del>$123.00</del></h6>
+              </div>
+              <div class="d-flex align-items-center justify-content-center mb-1">
+                  <small class="fa fa-star text-primary mr-1"></small>
+                  <small class="fa fa-star text-primary mr-1"></small>
+                  <small class="fa fa-star text-primary mr-1"></small>
+                  <small class="fa fa-star text-primary mr-1"></small>
+                  <small class="fa fa-star text-primary mr-1"></small>
+                  <small>(99)</small>
+              </div>
+          </div>
+      </div>`;
 
-let huevo2 = new HuevoFaberge(
-  2,
-  'Huevo de plata',
-  75000,
-  'img/huevo-plata.jpg',
-  [['Plata 925', 100]],
-  '10x10x10',
-  '1kg',
-  5
-);
+    contenedor.appendChild(divProd);
+  });
+};
 
-let huevo3 = new HuevoFaberge(
-  3,
-  'Huevo de bronce',
-  50000,
-  'img/huevo-bronce.jpg',
-  [
-    ['Bronce', 90],
-    ['Plata 925', 10],
-  ],
-  '10x10x10',
-  '1kg',
-  5
-);
+const getData = async () => {
+  let data = await fetch('./prods.json')
+    .then((res) => res.json())
+    .then((json) => {
+      return json;
+    });
 
-let huevo4 = new HuevoFaberge(
-  4,
-  'Huevo de cobre',
-  25000,
-  'img/huevo-cobre.jpg',
-  [
-    ['Cobre', 80],
-    ['Plata 925', 20],
-  ],
-  '10x10x10',
-  '1kg',
-  20
-);
+  loadDom(data);
+};
 
-productos.push(huevo1, huevo2, huevo3, huevo4);
-
-// let res = getHuevosDescuento(productos, 5);
-// console.log(res);
-
-do {
-  let eleccion =
-    prompt(`Bienvenido/a a nuestra tienda de Huevos Faberge, selecciona un producto:
-        1-Huevo de oro - ${getPrecioHuevo(huevo1)}
-        2-Huevo de plata - ${getPrecioHuevo(huevo2)}
-        3-Huevo de bronce - ${getPrecioHuevo(huevo3)}
-        4-Huevo de cobre - ${getPrecioHuevo(huevo4)}
-        5-Salir de la tienda
-        Total Carrito: ${formatCurrency(calcularTotal(carrito))}
-        Total IVA: ${formatCurrency(calcularIva(calcularTotal(carrito)))}
-        Total Productos: ${carrito.length}
-        `);
-
-  //console.log(eleccion);
-  switch (eleccion) {
-    case '1':
-      carrito.push(huevo1);
-      guardarCarrito(carrito);
-      break;
-    case '2':
-      carrito.push(huevo2);
-      guardarCarrito(carrito);
-      break;
-    case '3':
-      carrito.push(huevo3);
-      guardarCarrito(carrito);
-      break;
-    case '4':
-      carrito.push(huevo4);
-      guardarCarrito(carrito);
-      break;
-    case '5':
-      let cantidad =
-        carrito.length > 0
-          ? ` Tiene elementos en el carrito (${carrito.length})`
-          : '';
-      condition = !confirm(`Estas seguro de querer salir?${cantidad}`);
-      if (!condition) {
-        limpiarCarrito();
-      }
-      break;
-    case null: // cancelar del prompt sin valor
-      condition = false;
-      break;
-    default:
-      alert('Esa opción no está disponible');
-      break;
-  }
-} while (condition);
+getData();
