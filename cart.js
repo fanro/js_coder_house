@@ -44,14 +44,22 @@ const modificarCantidad = (id, cantidad) => {
 
 refreshIndicadores();
 
+let totalCarrito = 0;
+const refreshTotal = () => {
+  let carritoCount = document.querySelector('#subtotal-carrito');
+  carritoCount.innerHTML = formatCurrency(totalCarrito);
+};
+
 const loadDomCarrito = (prods) => {
+  totalCarrito = 0;
   let contenedor = document.querySelector('#cart-items');
-  prods.forEach((prod, inx) => {
+  prods.forEach((prod) => {
     let tr = document.createElement('tr');
     let precio = prod.descuento
       ? prod.precio * (1 - prod.descuento)
       : prod.precio;
 
+    totalCarrito += precio * prod.cantidad;
     tr.innerHTML = `
                     <td class="align-middle"><img src="${
                       prod.img
@@ -94,6 +102,8 @@ const loadDomCarrito = (prods) => {
 
     contenedor.appendChild(tr);
   });
+
+  refreshTotal();
 };
 
 loadDomCarrito(carrito);

@@ -82,7 +82,7 @@ const addToFavorites = (id) => {
   Toastify({
     text: mensaje,
     duration: 3000,
-    destination: 'https://github.com/apvarun/toastify-js',
+    destination: '/favorites.html',
     newWindow: true,
     close: true,
     gravity: 'top', // `top` or `bottom`
@@ -109,7 +109,7 @@ const addToCart = (id) => {
   Toastify({
     text: mensaje,
     duration: 3000,
-    destination: 'https://github.com/apvarun/toastify-js',
+    destination: '/cart.html',
     newWindow: true,
     close: true,
     gravity: 'top', // `top` or `bottom`
