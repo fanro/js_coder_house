@@ -137,7 +137,14 @@ btnconfirmarCompra.addEventListener('click', () => {
       confirmButtonText: 'Sí, confirmar!',
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire('¡Confirmado!', 'Tu compra ha sido confirmada.', 'success');
+        Swal.fire({
+          title: '¡Confirmado!',
+          text: 'Tu compra ha sido confirmada. Muchas gracias!',
+          imageUrl: 'img/encias_sangrantes_2.jpg',
+          imageWidth: 450,
+          imageHeight: 300,
+          imageAlt: 'Custom image',
+        });
         carrito = [];
         localStorage.setItem('carrito', JSON.stringify(carrito));
         cleanDomCarrito();
