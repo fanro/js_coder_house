@@ -160,6 +160,12 @@ const getData = async () => {
     .then((res) => res.json())
     .then((json) => {
       return json;
+    })
+    .catch((error) => {
+      let contenedor = document.querySelector('#product-list');
+      contenedor.innerHTML = `<div class="alert alert-danger" role="alert">
+        Error al cargar los datos. Por favor, intente nuevamente más tarde. </div>`;
+      throw new Error('Error al cargar los datos: ' + error);
     });
 
   data.forEach((huevo) => {
