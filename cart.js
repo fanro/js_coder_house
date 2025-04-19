@@ -118,23 +118,33 @@ loadDomCarrito(carrito);
 
 let btnconfirmarCompra = document.querySelector('#confirmar-compra');
 btnconfirmarCompra.addEventListener('click', () => {
-  Swal.fire({
-    title: '¿Estás seguro?',
-    text: 'No podrás revertir esto!',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Sí, confirmar!',
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire('¡Confirmado!', 'Tu compra ha sido confirmada.', 'success');
-      carrito = [];
-      localStorage.setItem('carrito', JSON.stringify(carrito));
-      cleanDomCarrito();
-      totalCarrito = 0;
-      refreshTotal();
-      refreshIndicadores();
-    }
-  });
+  if (carrito.length === 0) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Carrito vacío!',
+    });
+  } else {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: `Total Carrito: ${formatCurrency(
+        totalCarrito + calcularIva(totalCarrito)
+      )}`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, confirmar!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('¡Confirmado!', 'Tu compra ha sido confirmada.', 'success');
+        carrito = [];
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+        cleanDomCarrito();
+        totalCarrito = 0;
+        refreshTotal();
+        refreshIndicadores();
+      }
+    });
+  }
 });
