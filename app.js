@@ -70,7 +70,7 @@ const addToFavorites = (id) => {
     text: mensaje,
     duration: 3000,
     destination: '/favorites.html',
-    newWindow: true,
+    newWindow: false,
     close: true,
     gravity: 'top', // `top` or `bottom`
     position: 'right', // `left`, `center` or `right`
@@ -97,7 +97,7 @@ const addToCart = (id) => {
     text: mensaje,
     duration: 3000,
     destination: '/cart.html',
-    newWindow: true,
+    newWindow: false,
     close: true,
     gravity: 'top', // `top` or `bottom`
     position: 'right', // `left`, `center` or `right`
