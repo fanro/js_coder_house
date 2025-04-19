@@ -1,11 +1,3 @@
-const calcularTotal = (productos) => {
-  let total = 0;
-  for (let i = 0; i < productos.length; i++) {
-    total += productos[i].precio;
-  }
-  return total;
-};
-
 const formatCurrency = (precio) => {
   return new Intl.NumberFormat('es-AR', {
     style: 'currency',
